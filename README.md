@@ -11,7 +11,7 @@
 How can you train a DNN so that it minimizes some given loss $\mathcal{L}$ on some given training dataset $\mathcal{S}$  while *provably enforcing some constraints on its mapping* e.g. that the DNN is affine on some region $R$ as in
 
 $$
-\min_{\theta} \mathcal{L}(f_{\theta},\mathcal{S}) \;\; ?\overset{?}{\underset{?}{\textbf{and}}}? \;\;f_{\theta}(x) \text{ is affine on $R$},
+\min_{\theta} \mathcal{L}(f_{\theta},\mathcal{S})  ?\overset{?}{\underset{?}{\textbf{and}}}?  f_{\theta}(x) \text{ is affine on $R$},
 $$
 
 of course one could employ regularization to enforce the constraint, but this suffers from the curse of dimensionality and does not provide any guarantee unless the regularization is tested on *infinite samples*.
@@ -20,8 +20,8 @@ Instead, we propose **POLICE** which is a simple method that provably enforces c
 For **POLICE** to work, you will need:
 
 - a DNN with nonlinearities such as (leaky)-ReLU, absolute value, max-pooling 
-- a convex region ($R$ above) where the DNN needs to be constrained to stay affine
-- the vertices that define that region ($R$ above)
+- a convex region (R above) where the DNN needs to be constrained to stay affine
+- the vertices that define that region (R above)
 
 given those vertices, POLICE simply consists in adding them to your original mini-batch at each forward pass, and using the method presribed by `enforce_constraint_forward` defined in [utils.py](./utils.py)
 
